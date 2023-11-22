@@ -1,0 +1,18 @@
+//------- Replace the following! ------
+#define SSID ""
+#define PASSWORD ""
+
+
+// From https://console.cloud.google.com/apis/credentials/oauthclient/
+// your google oauth2 client id and secret
+#define CLIENT_ID  ""
+#define CLIENT_SECRET ""
+
+// your google oauth2 refresh token
+#define GOOGLE_REFRESH_TOKEN ""
+
+#ifndef DEBUG
+	#define DEBUG true // Debug flag enables/disables serial output
+#endif
+
+#define PROPERTY_ID ""
