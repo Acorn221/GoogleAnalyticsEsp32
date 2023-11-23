@@ -205,7 +205,7 @@ void getRealtimeData(int x, int y) {
 void getStandardData(int x, int y){
   // checking to see if its time to update
   if((millis() - standardUpdate.lastChecked >= standardUpdate.updateInterval) || !standardUpdate.firstRun) {
-     HTTPClient https;
+    HTTPClient https;
 
     char url[256];
 
@@ -280,14 +280,28 @@ void getStandardData(int x, int y){
 
 
         // Users Box
-        display.fillRect(x, y, 125, 62, GxEPD_WHITE);
-				display.drawRoundRect(x, y, 125, 62, 10, GxEPD_BLACK);
+        display.fillRect(x, y, 128-x, 250-y, GxEPD_WHITE);
+				display.drawRoundRect(x, y, 168, 62, 10, GxEPD_BLACK);
 				display.drawBitmap(PeopleIcon, x + 5, y + 5, 49, 38, GxEPD_BLACK);
 				display.setCursor(x+50, y+30);
 				display.println("Users");
         String activeUsersStr = String(activeUsers);
         display.setCursor(x + 20, y+58);
 				display.println(activeUsersStr);
+
+        // installs box
+        display.drawRoundRect(x, y + 65, 83, 35, 10, GxEPD_BLACK);
+				display.drawBitmap(InstallIcon, x + 5, y + 70, 24, 25, GxEPD_BLACK);
+        String installCountStr = String(installCount);
+        display.setCursor(x + 35, y+60+28);
+				display.println(installCountStr);
+
+        // uninstalls box
+        display.drawRoundRect(x + 85, y + 65, 83, 35, 10, GxEPD_BLACK);
+				display.drawBitmap(UninstallIcon, x + 85 + 5, y + 70, 25, 25, GxEPD_BLACK);
+        String uninstallCountStr = String(uninstallCount);
+        display.setCursor(x + 85 + 35, y+60+28);
+				display.println(uninstallCountStr);
 
         changeMade = true;
       } else {
@@ -296,10 +310,13 @@ void getStandardData(int x, int y){
       }
     }
     https.end();
+
     standardUpdate.lastChecked = millis();
     standardUpdate.firstRun = true;
   }
 }
+
+
 
 void setup()
 {
