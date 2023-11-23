@@ -22,6 +22,8 @@
     extern const unsigned char LighterfuelLogo[];
     extern const unsigned char ClockIcon[];
     extern const unsigned char PeopleIcon[];
+    extern const unsigned char InstallIcon[];
+    extern const unsigned char UninstallIcon[];
 
     void showLines(String text, int maxLines, int y, GxEPD_Class* display);
     void setDisplayNotListening(GxEPD_Class * display);
