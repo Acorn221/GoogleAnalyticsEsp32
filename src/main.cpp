@@ -311,6 +311,57 @@ void getStandardData(int x, int y){
     }
     https.end();
 
+    sprintf(url, "https://content-analyticsdata.googleapis.com/v1beta/properties/%s:runReport", PROPERTY_ID);
+
+    if(https.begin(*client, url))  {
+      https.addHeader("Content-Type", "application/json");
+      https.addHeader("Accept", "*/*");
+      https.addHeader("Authorization", "Bearer " + t.access_token);
+
+      // get the weekly user count for the last 30 days
+      char body[1250] = R"({
+        "dateRanges": [
+          {
+            "startDate": "30daysAgo",
+            "endDate": "yesterday"
+          }
+        ],
+        "dimensions": [
+          {
+              "name": "eventName"
+          },
+          {
+              "name": "nthWeek"
+          }
+        ],
+        "metrics": [
+          {
+              "name": "totalUsers"
+          }
+        ],
+        "dimensionFilter": {
+          "filter": {
+              "fieldName": "eventName",
+              "stringFilter": {
+                  "value": "Loaded_Tinder"
+              }
+          }
+        }
+      })";
+
+      int httpCode = https.POST(body);
+
+      if(httpCode == 200){
+          // TODO: create a chart of the weekly user count
+      } else {
+        if(DEBUG)
+          Serial.printf("Error receiving response, HTTP Code:%d, Content: %s\n", httpCode, https.getString().c_str());
+      }
+    }
+
+    https.end();
+
+
     standardUpdate.lastChecked = millis();
     standardUpdate.firstRun = true;
   }
