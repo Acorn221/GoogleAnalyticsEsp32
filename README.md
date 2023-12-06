@@ -6,7 +6,7 @@ This project displays the Google Analytics data from my chrome extension [Lighte
 
 LighterFuel uses the GA4 measurement protocol, as that's the only way Mv3 extensions can send data to GA.
 
-![Image](https://github.com/Acorn221/GoogleAnalyticsEsp32/blob/master/20231122_193901.jpg?raw=true)
+![Image](https://github.com/Acorn221/GoogleAnalyticsEsp32/blob/master/20231206_165240.jpg?raw=true)
 
 ## Setup
 
